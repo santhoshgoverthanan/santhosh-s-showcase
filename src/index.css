@@ -34,6 +34,11 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
+    /* Additional gradient colors */
+    --gradient-cyan: 185 100% 50%;
+    --gradient-purple: 270 80% 60%;
+    --gradient-pink: 330 80% 60%;
+
     --border: 220 15% 18%;
     --input: 220 15% 15%;
     --ring: 185 100% 50%;
