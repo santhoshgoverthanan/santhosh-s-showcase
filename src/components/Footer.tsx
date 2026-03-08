@@ -20,7 +20,7 @@ const Footer = () => {
           {/* Copyright */}
           <p className="text-sm text-muted-foreground flex items-center gap-1">
             © {currentYear} Santhosh Goverthanan. Made with{" "}
-            <Heart className="w-4 h-4 text-red-500 inline" fill="currentColor" /> in India
+            <Heart className="w-4 h-4 text-destructive inline" fill="currentColor" /> in India
           </p>
 
           {/* Quick Links */}
