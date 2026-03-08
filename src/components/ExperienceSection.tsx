@@ -45,7 +45,7 @@ const ExperienceSection = () => {
       description: [
         "Software & App Development, Web Development, ML Model Creation",
         "Career Branding: ATS-optimized resumes, LinkedIn optimization, portfolio design",
-        "50+ successful client projects delivered",
+        "100+ successful client projects delivered",
         "Logo & Portfolio Design for individuals and businesses",
       ],
       gradient: "from-green-500 to-emerald-500",
