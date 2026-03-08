@@ -19,9 +19,8 @@ const Footer = () => {
           </motion.a>
 
           {/* Copyright */}
-          <p className="text-sm text-muted-foreground flex items-center gap-1">
-            © {currentYear} Santhosh Goverthanan. Made with{" "}
-            <Heart className="w-4 h-4 text-destructive inline" fill="currentColor" /> in India
+          <p className="text-sm text-muted-foreground">
+            Code the Future, Design the Difference
           </p>
 
           {/* Quick Links */}
