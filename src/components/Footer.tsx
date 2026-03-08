@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
+import sgLogo from "@/assets/sg-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,10 +12,10 @@ const Footer = () => {
           {/* Logo */}
           <motion.a
             href="#home"
-            className="text-xl font-bold text-gradient font-mono"
+            className="flex items-center"
             whileHover={{ scale: 1.05 }}
           >
-            &lt;SG /&gt;
+            <img src={sgLogo} alt="SG Logo" className="h-8 w-auto" />
           </motion.a>
 
           {/* Copyright */}

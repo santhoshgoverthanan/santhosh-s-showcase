@@ -100,7 +100,7 @@ const HeroSection = () => {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-              <span className="text-sm text-primary font-mono">Available for opportunities</span>
+              <span className="text-sm text-primary font-mono">Open to collaborate</span>
             </motion.div>
 
             {/* Name */}

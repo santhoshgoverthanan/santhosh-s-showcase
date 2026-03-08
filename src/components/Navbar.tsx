@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import sgLogo from "@/assets/sg-logo.png";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -38,11 +39,11 @@ const Navbar = () => {
           {/* Logo */}
           <motion.a
             href="#home"
-            className="text-2xl font-bold text-gradient font-mono"
+            className="flex items-center"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            &lt;SG /&gt;
+            <img src={sgLogo} alt="SG Logo" className="h-10 w-auto" />
           </motion.a>
 
           {/* Desktop Navigation */}
