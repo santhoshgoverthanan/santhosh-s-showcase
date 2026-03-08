@@ -117,7 +117,7 @@ const ServicesSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative p-6 rounded-2xl glass-card hover:border-primary/50 transition-all duration-300 flex flex-col"
+              className="group relative p-6 rounded-2xl glass-card hover:border-primary/50 transition-all duration-300"
             >
               {/* Gradient accent */}
               <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${service.color} opacity-60 group-hover:opacity-100 transition-opacity`} />
@@ -131,22 +131,9 @@ const ServicesSection = () => {
               <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
                 {service.title}
               </h3>
-              <p className="text-sm text-muted-foreground mb-4 flex-grow">
+              <p className="text-sm text-muted-foreground">
                 {service.description}
               </p>
-
-              {/* Contact Button */}
-              <motion.a
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r ${service.color} text-white text-sm font-semibold shadow-lg hover:shadow-xl transition-all`}
-              >
-                <MessageCircle className="w-4 h-4" />
-                Contact Me
-              </motion.a>
             </motion.div>
           ))}
         </div>
