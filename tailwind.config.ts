@@ -52,7 +52,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-      },
+        },
+        success: {
+          DEFAULT: "hsl(142 76% 36%)",
+        },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
