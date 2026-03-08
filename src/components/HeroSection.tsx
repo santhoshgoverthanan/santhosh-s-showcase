@@ -1,36 +1,86 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Download } from "lucide-react";
 import profileImage from "@/assets/santhosh-profile.jpg";
 
 const HeroSection = () => {
   const roles = ["AI/ML Engineer", "Software Developer", "Data Analyst", "Full Stack Developer"];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source
+            src="https://cdn.pixabay.com/video/2020/05/17/39591-421906416_large.mp4"
+            type="video/mp4"
+          />
+        </video>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
+      </div>
+
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden z-[1]">
         {/* Floating orbs */}
         <motion.div
-          className="absolute w-[500px] h-[500px] rounded-full bg-primary/5 blur-3xl"
+          className="absolute w-[600px] h-[600px] rounded-full bg-primary/10 blur-3xl"
           animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
+            scale: [1, 1.2, 1],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          style={{ top: "10%", left: "10%" }}
+          style={{ top: "5%", left: "5%" }}
         />
         <motion.div
-          className="absolute w-[400px] h-[400px] rounded-full bg-accent/5 blur-3xl"
+          className="absolute w-[500px] h-[500px] rounded-full bg-accent/10 blur-3xl"
           animate={{
             x: [0, -80, 0],
             y: [0, 80, 0],
+            scale: [1.2, 1, 1.2],
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          style={{ bottom: "20%", right: "10%" }}
+          style={{ bottom: "10%", right: "5%" }}
+        />
+        <motion.div
+          className="absolute w-[300px] h-[300px] rounded-full bg-primary/5 blur-2xl"
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          style={{ top: "40%", right: "20%" }}
         />
 
+        {/* Animated particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-primary/40"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+
         {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(90deg,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black_40%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(hsl(var(--primary)/0.03)_1px,transparent_1px),linear-gradient(90deg,hsl(var(--primary)/0.03)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,black_20%,transparent_100%)]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
@@ -47,10 +97,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-              <span className="text-sm text-muted-foreground font-mono">Available for opportunities</span>
+              <span className="text-sm text-primary font-mono">Available for opportunities</span>
             </motion.div>
 
             {/* Name */}
@@ -132,6 +182,15 @@ const HeroSection = () => {
               >
                 Get In Touch
               </motion.a>
+              <motion.a
+                href="https://drive.google.com/uc?export=download&id=YOUR_RESUME_ID"
+                className="px-6 py-4 rounded-full border border-accent text-accent font-semibold hover:bg-accent/10 transition-all duration-300 flex items-center gap-2"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Download size={18} />
+                Resume
+              </motion.a>
             </motion.div>
 
             {/* Social Links */}
@@ -171,8 +230,8 @@ const HeroSection = () => {
           >
             {/* Glowing ring */}
             <motion.div
-              className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent opacity-20 blur-2xl"
-              animate={{ scale: [1, 1.1, 1] }}
+              className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent opacity-30 blur-3xl"
+              animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.4, 0.2] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
             
@@ -180,38 +239,53 @@ const HeroSection = () => {
             <div className="relative">
               {/* Rotating border */}
               <motion.div
-                className="absolute -inset-2 rounded-full bg-gradient-to-r from-primary via-accent to-primary"
+                className="absolute -inset-3 rounded-full bg-gradient-to-r from-primary via-accent to-primary"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                style={{ padding: "3px" }}
+                style={{ padding: "4px" }}
               >
                 <div className="w-full h-full rounded-full bg-background" />
               </motion.div>
+              
+              {/* Second rotating ring */}
+              <motion.div
+                className="absolute -inset-6 rounded-full border-2 border-dashed border-primary/30"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              />
               
               {/* Image */}
               <motion.img
                 src={profileImage}
                 alt="Santhosh Goverthanan"
-                className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full object-cover border-4 border-background"
+                className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full object-cover border-4 border-background shadow-2xl"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               />
             </div>
 
             {/* Floating tech badges */}
-            {["Python", "AI/ML", "React"].map((tech, index) => (
+            {[
+              { text: "Python", top: "5%", left: "-5%" },
+              { text: "AI/ML", top: "45%", left: "-20%" },
+              { text: "React", top: "85%", left: "0%" },
+              { text: "TensorFlow", top: "15%", right: "-15%" },
+              { text: "AWS", top: "70%", right: "-10%" },
+            ].map((badge, index) => (
               <motion.div
-                key={tech}
-                className="absolute px-3 py-1.5 rounded-full glass text-sm font-mono text-primary border border-primary/30"
+                key={badge.text}
+                className="absolute px-4 py-2 rounded-full glass text-sm font-mono text-primary border border-primary/40 backdrop-blur-md"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1 + index * 0.2 }}
+                transition={{ delay: 1 + index * 0.15, type: "spring" }}
+                whileHover={{ scale: 1.1, y: -5 }}
                 style={{
-                  top: index === 0 ? "10%" : index === 1 ? "50%" : "80%",
-                  left: index === 0 ? "0%" : index === 1 ? "-15%" : "5%",
+                  top: badge.top,
+                  left: badge.left,
+                  right: badge.right,
                 }}
               >
-                {tech}
+                {badge.text}
               </motion.div>
             ))}
           </motion.div>
