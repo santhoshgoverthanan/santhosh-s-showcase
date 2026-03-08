@@ -13,13 +13,14 @@ const ContactSection = () => {
     // Create mailto link
     const subject = `Portfolio Contact from ${formData.name}`;
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-    window.location.href = `mailto:govakalaisanthosh@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:santhoshgoverthanan@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "govakalaisanthosh@gmail.com", href: "mailto:govakalaisanthosh@gmail.com" },
+    { icon: Mail, label: "Email", value: "santhoshgoverthanan@gmail.com", href: "mailto:santhoshgoverthanan@gmail.com" },
     { icon: Phone, label: "Phone", value: "+91 9344397037", href: "tel:+919344397037" },
-    { icon: MapPin, label: "Location", value: "Tiruvannamalai, Tamil Nadu", href: "#" },
+    { icon: MapPin, label: "Current", value: "Bangalore, Karnataka", href: "#" },
+    { icon: MapPin, label: "Native", value: "Tiruvannamalai, Tamil Nadu", href: "#" },
   ];
 
   const socialLinks = [

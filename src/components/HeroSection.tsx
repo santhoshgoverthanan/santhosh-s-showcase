@@ -114,37 +114,35 @@ const HeroSection = () => {
               <span className="text-gradient glow-text">Santhosh</span>
             </motion.h1>
 
-            {/* Animated Role */}
+            {/* Animated Role - Typewriter Effect */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-muted-foreground mb-6 h-12"
+              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-muted-foreground mb-6 h-12 relative overflow-hidden"
             >
-              <motion.span
-                key={roles[0]}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="font-mono text-primary"
-              >
+              <div className="relative h-full flex items-center justify-center lg:justify-start">
                 {roles.map((role, index) => (
                   <motion.span
                     key={role}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{
-                      delay: index * 3,
-                      duration: 0.5,
-                      repeat: Infinity,
-                      repeatDelay: roles.length * 3 - 0.5,
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{
+                      opacity: [0, 1, 1, 0],
+                      y: [20, 0, 0, -20],
                     }}
-                    className="absolute"
-                    style={{ display: "inline-block" }}
+                    transition={{
+                      duration: 3,
+                      delay: index * 3,
+                      repeat: Infinity,
+                      repeatDelay: (roles.length - 1) * 3,
+                      times: [0, 0.1, 0.9, 1],
+                    }}
+                    className="absolute font-mono text-primary"
                   >
                     {role}
                   </motion.span>
                 ))}
-              </motion.span>
+              </div>
             </motion.div>
 
             {/* Description */}
@@ -203,7 +201,7 @@ const HeroSection = () => {
               {[
                 { icon: Github, href: "https://github.com/santhosh-G-07", label: "GitHub" },
                 { icon: Linkedin, href: "https://linkedin.com/in/santhosh-goverthanan-25292b292", label: "LinkedIn" },
-                { icon: Mail, href: "mailto:govakalaisanthosh@gmail.com", label: "Email" },
+                { icon: Mail, href: "mailto:santhoshgoverthanan@gmail.com", label: "Email" },
               ].map(({ icon: Icon, href, label }) => (
                 <motion.a
                   key={label}

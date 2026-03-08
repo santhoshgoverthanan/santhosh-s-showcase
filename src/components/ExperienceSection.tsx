@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Briefcase, GraduationCap, Rocket, MapPin, Calendar } from "lucide-react";
+import { useRef, useState } from "react";
+import { Briefcase, GraduationCap, Rocket, MapPin, Calendar, ChevronDown, ChevronUp } from "lucide-react";
 
 const ExperienceSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const experiences = [
     {
@@ -20,7 +21,7 @@ const ExperienceSection = () => {
         "Collaborated in an Agile team to build and test real-time modules for client-based projects",
         "Extensive knowledge in SQL queries, CRUD operations, Joins, Sub-queries, and Functions",
       ],
-      color: "from-cyan-500 to-blue-500",
+      gradient: "from-cyan-500 to-blue-600",
     },
     {
       type: "work",
@@ -33,7 +34,7 @@ const ExperienceSection = () => {
         "Implemented linear regression, decision trees, and neural networks with 90% accuracy",
         "Handled data preprocessing, feature engineering, and model deployment on AWS/Azure",
       ],
-      color: "from-purple-500 to-pink-500",
+      gradient: "from-purple-500 to-pink-500",
     },
     {
       type: "freelance",
@@ -47,7 +48,7 @@ const ExperienceSection = () => {
         "50+ successful client projects delivered",
         "Logo & Portfolio Design for individuals and businesses",
       ],
-      color: "from-green-500 to-emerald-500",
+      gradient: "from-green-500 to-emerald-500",
     },
     {
       type: "work",
@@ -60,7 +61,7 @@ const ExperienceSection = () => {
         "Hands-on experience designing and deploying scalable AI solutions on cloud",
         "Built AI-driven applications covering NLP, data extraction, and model deployment",
       ],
-      color: "from-blue-500 to-indigo-500",
+      gradient: "from-blue-500 to-indigo-500",
     },
     {
       type: "work",
@@ -72,7 +73,7 @@ const ExperienceSection = () => {
         "Learned data analysis, project creation and business analysis",
         "Contributed to business strategy and development initiatives",
       ],
-      color: "from-orange-500 to-amber-500",
+      gradient: "from-orange-500 to-amber-500",
     },
     {
       type: "work",
@@ -85,7 +86,7 @@ const ExperienceSection = () => {
         "Contributing to innovative smart technology projects",
         "Best practices in IoT development and deployment",
       ],
-      color: "from-teal-500 to-cyan-500",
+      gradient: "from-teal-500 to-cyan-500",
     },
     {
       type: "work",
@@ -98,7 +99,7 @@ const ExperienceSection = () => {
         "Deep dive into machine learning and its applications",
         "Hands-on project work with real datasets",
       ],
-      color: "from-violet-500 to-purple-500",
+      gradient: "from-violet-500 to-purple-500",
     },
     {
       type: "work",
@@ -111,7 +112,7 @@ const ExperienceSection = () => {
         "Developed 20+ scripts for complex data processing tasks",
         "Improved execution speed by 30% in real-world applications",
       ],
-      color: "from-yellow-500 to-orange-500",
+      gradient: "from-yellow-500 to-orange-500",
     },
     {
       type: "work",
@@ -124,7 +125,7 @@ const ExperienceSection = () => {
         "Mastered machine learning, neural networks, data analytics, and automation",
         "Increased accuracy of data by 20%",
       ],
-      color: "from-red-500 to-pink-500",
+      gradient: "from-red-500 to-pink-500",
     },
     {
       type: "education",
@@ -137,7 +138,7 @@ const ExperienceSection = () => {
         "Specialized in Machine Learning, Deep Learning, and Data Analytics",
         "Active participation in technical events and hackathons",
       ],
-      color: "from-accent to-yellow-500",
+      gradient: "from-accent to-yellow-500",
     },
     {
       type: "education",
@@ -149,7 +150,7 @@ const ExperienceSection = () => {
         "Bio-Mathematics Stream",
         "Percentage: 81%",
       ],
-      color: "from-accent to-orange-500",
+      gradient: "from-accent to-orange-500",
     },
   ];
 
@@ -200,78 +201,86 @@ const ExperienceSection = () => {
           ))}
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/30 transform md:-translate-x-1/2" />
-
-          <div className="space-y-8">
-            {experiences.map((exp, index) => (
+        {/* Card Grid Layout */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={`${exp.company}-${index}`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              layout
+              className="group"
+            >
               <motion.div
-                key={`${exp.company}-${index}`}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className={`relative flex flex-col md:flex-row gap-4 md:gap-8 ${
-                  index % 2 === 0 ? "md:flex-row-reverse" : ""
-                }`}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className={`relative h-full p-6 rounded-2xl glass-card border border-border/50 hover:border-primary/50 transition-all duration-300 overflow-hidden cursor-pointer`}
+                onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
               >
-                {/* Timeline dot */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{ delay: index * 0.08 + 0.2, type: "spring" }}
-                  className={`absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-gradient-to-r ${exp.color} transform -translate-x-1/2 z-10 ring-4 ring-background`}
-                />
-
-                {/* Content */}
-                <div className={`flex-1 ml-10 md:ml-0 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                  <motion.div
-                    whileHover={{ y: -5 }}
-                    className="p-5 rounded-2xl glass-card hover:border-primary/50 transition-all duration-300"
-                  >
-                    {/* Header */}
-                    <div className={`flex items-start gap-3 mb-3 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                      <div className={`p-2.5 rounded-xl bg-gradient-to-br ${exp.color}`}>
-                        {exp.type === "education" ? (
-                          <GraduationCap className="w-5 h-5 text-white" />
-                        ) : exp.type === "freelance" ? (
-                          <Rocket className="w-5 h-5 text-white" />
-                        ) : (
-                          <Briefcase className="w-5 h-5 text-white" />
-                        )}
-                      </div>
-                      <div className={`flex-1 ${index % 2 === 0 ? "md:text-right" : ""}`}>
-                        <div className="flex items-center gap-2 flex-wrap mb-1">
-                          <Calendar className="w-3 h-3 text-primary" />
-                          <span className="text-xs font-mono text-primary">{exp.period}</span>
-                        </div>
-                        <h3 className="text-lg font-semibold text-foreground">{exp.title}</h3>
-                        <p className="text-sm font-medium text-muted-foreground">{exp.company}</p>
-                        <div className={`flex items-center gap-1 text-xs text-muted-foreground mt-1 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
-                          <MapPin className="w-3 h-3" />
-                          {exp.location}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Description */}
-                    <ul className={`space-y-1.5 ${index % 2 === 0 ? "md:text-right" : ""}`}>
-                      {exp.description.map((item, i) => (
-                        <li key={i} className={`text-sm text-muted-foreground flex gap-2 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                          <span className="text-primary mt-0.5">▹</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
+                {/* Gradient accent bar */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${exp.gradient}`} />
+                
+                {/* Icon */}
+                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${exp.gradient} mb-4`}>
+                  {exp.type === "education" ? (
+                    <GraduationCap className="w-6 h-6 text-white" />
+                  ) : exp.type === "freelance" ? (
+                    <Rocket className="w-6 h-6 text-white" />
+                  ) : (
+                    <Briefcase className="w-6 h-6 text-white" />
+                  )}
                 </div>
 
-                {/* Spacer for alternating layout */}
-                <div className="hidden md:block flex-1" />
+                {/* Period Badge */}
+                <div className="flex items-center gap-2 mb-3">
+                  <Calendar className="w-3.5 h-3.5 text-primary" />
+                  <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded-full">
+                    {exp.period}
+                  </span>
+                </div>
+
+                {/* Title & Company */}
+                <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
+                  {exp.title}
+                </h3>
+                <p className="text-sm font-medium text-muted-foreground mb-2">{exp.company}</p>
+                
+                {/* Location */}
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
+                  <MapPin className="w-3.5 h-3.5" />
+                  {exp.location}
+                </div>
+
+                {/* Expandable Description */}
+                <motion.div
+                  initial={false}
+                  animate={{ height: expandedIndex === index ? "auto" : 0 }}
+                  className="overflow-hidden"
+                >
+                  <ul className="space-y-2 pt-4 border-t border-border/50">
+                    {exp.description.map((item, i) => (
+                      <li key={i} className="text-sm text-muted-foreground flex gap-2">
+                        <span className="text-primary shrink-0">▹</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+
+                {/* Expand/Collapse indicator */}
+                <div className="flex items-center justify-center mt-4 text-muted-foreground group-hover:text-primary transition-colors">
+                  {expandedIndex === index ? (
+                    <ChevronUp className="w-5 h-5" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5" />
+                  )}
+                </div>
+
+                {/* Hover glow effect */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br ${exp.gradient} transition-opacity duration-300 rounded-2xl pointer-events-none`} />
               </motion.div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
